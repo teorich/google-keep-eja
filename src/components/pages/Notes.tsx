@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable no-nested-ternary */
+
 import {
   DragDropContext,
   Droppable,
@@ -144,7 +144,11 @@ export default function Notes() {
               }}
             >
               <LightbulbOutlinedIcon
-                style={{ fontSize: 100, color: theme.palette.grey[300] }}
+                style={{
+                  fontSize: 100,
+                  color: theme.palette.grey[300],
+                  marginLeft: 30,
+                }}
               />
             </div>
             <span>Notes you add appear here</span>
