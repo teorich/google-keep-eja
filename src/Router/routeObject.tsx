@@ -1,0 +1,62 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+import { RouteObject } from 'react-router-dom';
+import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import Notes from '../components/pages/Notes';
+
+export type iRoute = RouteObject & {
+  name: string;
+  label?: string;
+  icon?: unknown;
+};
+
+export const ArrayRoutes: Array<iRoute> = [
+  {
+    name: 'notes',
+    label: 'notes',
+    path: '/notes',
+    icon: <LightbulbOutlinedIcon />,
+    element: <Notes />,
+    //   loader: rootLoader,
+    children: [],
+  },
+  {
+    name: 'reminders',
+    label: 'reminders',
+    path: '/reminders',
+    icon: <NotificationsNoneOutlinedIcon />,
+    element: <Notes />,
+    //   loader: rootLoader,
+    children: [],
+  },
+  {
+    name: 'edit-labels',
+    label: 'edit-labels',
+    path: '/edit-labels',
+    icon: <EditOutlinedIcon />,
+    element: <div>Reminders</div>,
+    //   loader: rootLoader,
+    children: [],
+  },
+  {
+    name: 'archive',
+    label: 'archive',
+    path: '/archive',
+    icon: <ArchiveOutlinedIcon />,
+    element: <div>Archive</div>,
+    //   loader: rootLoader,
+    children: [],
+  },
+  {
+    name: 'trash',
+    label: 'trash',
+    path: '/trash',
+    icon: <DeleteOutlineOutlinedIcon />,
+    element: <div>trash</div>,
+    //   loader: rootLoader,
+    children: [],
+  },
+];
