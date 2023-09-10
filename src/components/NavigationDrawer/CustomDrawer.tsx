@@ -6,7 +6,7 @@ import MuiDrawer from '@mui/material/Drawer';
 
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import TopBar from '../appBar/TopBar';
 import { useUiStore } from '../../context/globalStore';
 import DrawerItem from './DrawerItem';
@@ -85,6 +85,7 @@ export default function CustomDrawer() {
 
   return (
     <Box sx={{ display: 'flex', justifyItems: 'flex-start', marginTop: 8 }}>
+      <Navigate to="/notes" />
       <CssBaseline />
       <TopBar />
       <Drawer

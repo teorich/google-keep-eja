@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { makeStyles } from 'tss-react/mui';
-import { Paper, Fade, ClickAwayListener, useTheme } from '@mui/material';
+import { Paper, Fade } from '@mui/material';
 
 import ActionsBar from '../todo/Actions';
 import ContentTitle from '../todo/ContentTitle';
 import TodoContent from '../todo/TodoContent';
-import { useTodosStore } from '../../context/globalStore';
 import { Todo } from '../../interfaces/todo';
 
 const useStyles = makeStyles()((theme) => ({
@@ -15,7 +14,6 @@ const useStyles = makeStyles()((theme) => ({
     borderColor: theme.palette.itemBorderColor,
     borderWidth: theme.spacing(0.1),
     borderStyle: 'solid',
-    // height: 100,
     width: '100%',
     position: 'relative',
     flexWrap: 'wrap',
@@ -36,6 +34,9 @@ const useStyles = makeStyles()((theme) => ({
     padding: theme.spacing(1, 2),
     justifyContent: 'space-between',
   },
+  contentTodo: {
+    padding: 5,
+  },
 }));
 
 export default function TodoItem({
@@ -44,20 +45,13 @@ export default function TodoItem({
   onMouseUpCapture,
 }: {
   noteItem: Todo;
-  isEditMode: boolean;
   onMouseUpCapture: React.MouseEventHandler<HTMLDivElement> | undefined;
+  isEditMode?: boolean;
 }) {
   const { classes } = useStyles();
-  const theme = useTheme();
   const [isHovered, setHovered] = useState(false);
   const [title, setTitle] = useState(noteItem.title);
   const [noteinputs, setNotes] = useState<Array<string>>(noteItem.notes || []);
-
-  const [, dispatch] = useTodosStore();
-
-  const updateTodoItem = (todoItem) => {
-    dispatch({ type: 'UPDATED', payload: {} });
-  };
 
   return (
     <Paper
@@ -66,7 +60,7 @@ export default function TodoItem({
       className={classes.wrapper}
       elevation={isHovered || isEditMode ? 2 : 0}
     >
-      <div onMouseUpCapture={onMouseUpCapture}>
+      <div className={classes.contentTodo} onMouseUpCapture={onMouseUpCapture}>
         <ContentTitle
           title={title}
           setTitle={setTitle}
@@ -87,3 +81,7 @@ export default function TodoItem({
     </Paper>
   );
 }
+
+TodoItem.defaultProps = {
+  isEditMode: false,
+};

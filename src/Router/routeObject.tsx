@@ -6,6 +6,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import Notes from '../components/pages/Notes';
+import PlaceHolder from '../components/pages/PlaceHolder';
 
 export type iRoute = RouteObject & {
   name: string;
@@ -20,7 +21,6 @@ export const ArrayRoutes: Array<iRoute> = [
     path: '/notes',
     icon: <LightbulbOutlinedIcon />,
     element: <Notes />,
-    //   loader: rootLoader,
     children: [],
   },
   {
@@ -29,7 +29,6 @@ export const ArrayRoutes: Array<iRoute> = [
     path: '/reminders',
     icon: <NotificationsNoneOutlinedIcon />,
     element: <Notes />,
-    //   loader: rootLoader,
     children: [],
   },
   {
@@ -37,8 +36,7 @@ export const ArrayRoutes: Array<iRoute> = [
     label: 'edit-labels',
     path: '/edit-labels',
     icon: <EditOutlinedIcon />,
-    element: <div>Reminders</div>,
-    //   loader: rootLoader,
+    element: <PlaceHolder content="Edit Labels" />,
     children: [],
   },
   {
@@ -46,8 +44,7 @@ export const ArrayRoutes: Array<iRoute> = [
     label: 'archive',
     path: '/archive',
     icon: <ArchiveOutlinedIcon />,
-    element: <div>Archive</div>,
-    //   loader: rootLoader,
+    element: <PlaceHolder content="Archive" />,
     children: [],
   },
   {
@@ -55,8 +52,7 @@ export const ArrayRoutes: Array<iRoute> = [
     label: 'trash',
     path: '/trash',
     icon: <DeleteOutlineOutlinedIcon />,
-    element: <div>trash</div>,
-    //   loader: rootLoader,
+    element: <PlaceHolder content="Trash" />,
     children: [],
   },
 ];

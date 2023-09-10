@@ -1,16 +1,6 @@
-import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import { makeStyles } from 'tss-react/mui';
-import {
-  Box,
-  Button,
-  ClickAwayListener,
-  Collapse,
-  InputBase,
-  Paper,
-  useTheme,
-} from '@mui/material';
-import { nanoid } from 'nanoid';
+import { Button, InputBase, Paper } from '@mui/material';
 import { useState } from 'react';
 import { Todo, TodoActionKind } from '../../interfaces/todo';
 import TodoActions from './Actions';
@@ -20,18 +10,14 @@ import { useTodosStore } from '../../context/globalStore';
 export interface SimpleDialogProps {
   open: boolean;
   onClose: (value?: string) => void;
-  noteItem?: Todo;
+  noteItem?: Todo | null | undefined;
 }
 
 const useStyles = makeStyles()((theme) => ({
   paperWrapper: {
-    transition: theme.transitions.create('all', {
-      easing: theme.transitions.easing.easeIn,
-      duration: theme.transitions.duration.short,
-    }),
-    borderColor: theme.palette.itemBorderColor,
-    borderWidth: theme.spacing(0.1),
-    borderStyle: 'solid',
+    flex: 1,
+    minWidth: theme.spacing(75),
+    margin: '0 auto',
   },
   wrapper: {
     display: 'flex',
@@ -73,18 +59,18 @@ const useStyles = makeStyles()((theme) => ({
     fontWeight: 'bolder',
     cursor: 'pointer',
   },
+  todoCreateWrapper: {
+    flex: 1,
+    minWidth: theme.spacing(75),
+    margin: '0 auto',
+  },
 }));
 
 export default function EditTodo(props: SimpleDialogProps) {
   const { onClose, open, noteItem } = props;
 
-  const handleClose = () => {
-    onClose();
-    console.log('item', noteItem);
-  };
-
   const { classes } = useStyles();
-  const theme = useTheme();
+
   const [isFocussed, setFocussed] = useState(false);
   const [title, setTitle] = useState(noteItem?.title);
   const [notes, setNotes] = useState(noteItem?.notes);
@@ -93,57 +79,51 @@ export default function EditTodo(props: SimpleDialogProps) {
     const noteTexts = notes.map((item) => item.text);
     if (title || noteTexts.length > 0) {
       const payload = {
-        id: nanoid(),
+        id: noteItem?.id,
         title,
         notes,
       };
-      //   dispatch({
-      //     type: TodoActionKind.UPDATE,
-      //     payload,
-      //   });
+      dispatch({
+        type: TodoActionKind.UPDATE,
+        payload,
+      });
     }
-    // setTitle('');
-    // setNotes([]);
-    // setFocussed(false);
+  };
+
+  const handleClose = () => {
+    onClose();
+    onCloseClick();
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
-      <div>
-        <Paper
-          elevation={2}
+    <Dialog
+      onClose={handleClose}
+      open={open}
+      className={classes.todoCreateWrapper}
+    >
+      <Paper elevation={2} classes={{ root: classes.paperWrapper }}>
+        <InputBase
+          placeholder={isFocussed ? 'Title' : 'Take a note...'}
+          classes={{
+            root: open ? classes.inputTitleRoot : classes.inputNoteRoot,
+            input: classes.inputTitleInput,
+          }}
+          onFocus={() => setFocussed(true)}
+          inputProps={{ 'aria-label': 'note title' }}
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+        />
+        {open ? (
+          <TodoContent notes={notes} setNotes={setNotes} isEditMode />
+        ) : null}
 
-          //   classes={{ root: classes.paperWrapper }}
-        >
-          <InputBase
-            placeholder={isFocussed ? 'Title' : 'Take a note...'}
-            // style={{
-            //     display: 'flex',
-            //     flexDirection: 'column',
-            //     width: '500px',
-            //   }}
-            classes={{
-              root: isFocussed ? classes.inputTitleRoot : classes.inputNoteRoot,
-              input: classes.inputTitleInput,
-            }}
-            onFocus={() => setFocussed(true)}
-            inputProps={{ 'aria-label': 'note title' }}
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-          />
-          <TodoContent notes={notes} setNotes={setNotes} isEditMode={open} />
-
-          <div className={classes.barWrapper}>
-            <TodoActions id="" isCreateMode />
-            <Button
-              className={classes.buttonClick}
-              onClick={() => onCloseClick()}
-            >
-              Close
-            </Button>
-          </div>
-        </Paper>
-      </div>
+        <div className={classes.barWrapper}>
+          <TodoActions id="" isCreateMode />
+          <Button className={classes.buttonClick} onClick={() => handleClose()}>
+            Close
+          </Button>
+        </div>
+      </Paper>
     </Dialog>
   );
 }

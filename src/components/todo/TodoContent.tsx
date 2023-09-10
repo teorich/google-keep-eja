@@ -8,7 +8,7 @@ export default function TodoContent({
 }: {
   notes: Array<string>;
   setNotes: Dispatch<SetStateAction<string[]>>;
-  isEditMode: boolean;
+  isEditMode?: boolean;
 }) {
   return (
     <div>

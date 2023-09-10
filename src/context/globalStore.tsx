@@ -13,7 +13,7 @@ interface TodoAction {
   payload: Todo & Todo[];
 }
 
-type State = {
+export type State = {
   todos: Todo[];
 };
 
@@ -44,7 +44,10 @@ const reducer = (state: State, action: TodoAction): State => {
       return { ...state, todos: newTodos };
     }
     case TodoActionKind.UPDATE: {
-      return { ...state, todos: [...state.todos, mutatedItem] };
+      const newTodos = [...state.todos];
+
+      newTodos[mutatedIndex] = mutatedItem;
+      return { ...state, todos: [...newTodos] };
     }
 
     case TodoActionKind.RESHUFFLE: {
@@ -70,11 +73,14 @@ const reducer = (state: State, action: TodoAction): State => {
 
 export function TodosProvider({ children }: { children: JSX.Element }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [selectedTodo, setSelectedTodo] = useState();
+
+  const todoValue = useMemo(() => {
+    return [state, dispatch, selectedTodo, setSelectedTodo];
+  }, [selectedTodo, state]);
 
   return (
-    <TodosContext.Provider value={[state, dispatch]}>
-      {children}
-    </TodosContext.Provider>
+    <TodosContext.Provider value={todoValue}>{children}</TodosContext.Provider>
   );
 }
 

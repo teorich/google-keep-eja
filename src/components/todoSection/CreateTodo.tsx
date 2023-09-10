@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { useState } from 'react';
 import { makeStyles } from 'tss-react/mui';
-import { useTheme } from '@mui/material/styles';
 import { Paper, InputBase, Collapse, ClickAwayListener } from '@mui/material';
 import { nanoid } from 'nanoid';
 import { Button } from '@mui/base/Button';
@@ -64,11 +63,9 @@ const useStyles = makeStyles()((theme) => ({
 
 export default function CreateTodo() {
   const { classes } = useStyles();
-  const theme = useTheme();
   const [isFocussed, setFocussed] = useState(false);
   const [title, setTitle] = useState('');
   const [notes, setNotes] = useState([]);
-  const [color, setColor] = useState('default');
   const [, dispatch] = useTodosStore();
   const onCloseClick = () => {
     const noteTexts = notes.map((noteItem) => noteItem.text);
