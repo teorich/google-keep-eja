@@ -1,3 +1,14 @@
+# Initiate and Run Project
+yarn install
+
+yarn dev
+
+All CRUD operations work to the various notes/todos created. These notes are volatile, meaning if you refresh your browser all notes disappear
+
+
+
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
