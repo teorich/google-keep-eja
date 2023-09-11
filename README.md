@@ -3,6 +3,8 @@ yarn install 👍
 
 yarn dev 👍
 
+yarn test 💯
+
 All CRUD operations work to the various notes/todos created. These notes are volatile, meaning if you refresh your browser all notes disappear :done
 
 
