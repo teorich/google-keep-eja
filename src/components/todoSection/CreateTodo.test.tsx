@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { describe, expect, it } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
 
 import CreateTodo from './CreateTodo';
 
