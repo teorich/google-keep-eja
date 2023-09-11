@@ -4,7 +4,6 @@ import { Dispatch, SetStateAction } from 'react';
 
 const useStyles = makeStyles()((theme) => ({
   inputNoteRoot: {
-    ...theme.fontFamily.roboto,
     padding: theme.spacing(0.5, 2, 1.5, 2),
     display: 'flex',
   },
@@ -19,19 +18,15 @@ const useStyles = makeStyles()((theme) => ({
     overflow: 'hidden',
     display: 'flex',
     flexWrap: 'wrap',
-    flexDirection: 'row'
-    
+    flexDirection: 'row',
   },
   textNote: {
-    ...theme.fontFamily.roboto,
     fontWeight: 400,
     fontSize: '0.88rem',
     color: theme.palette.text.primary,
     display: 'flex',
     flexWrap: 'wrap',
-    flexDirection: 'column'
-
-   
+    flexDirection: 'column',
   },
 }));
 
@@ -70,7 +65,7 @@ export default function ContentText({
           multiline
         />
       ) : (
-        <div >
+        <div>
           {notes.map(({ text }, index) => (
             <Typography
               key={index}

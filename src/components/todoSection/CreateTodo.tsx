@@ -24,7 +24,7 @@ const useStyles = makeStyles()((theme) => ({
     flexDirection: 'column',
   },
   inputTitleRoot: {
-    ...theme.fontFamily.metropolis,
+    // ...theme.fontFamily.metropolis,
     padding: theme.spacing(1.25, 2),
   },
   inputTitleInput: {
@@ -36,7 +36,7 @@ const useStyles = makeStyles()((theme) => ({
     color: theme.palette.text.primary,
   },
   inputNoteRoot: {
-    ...theme.fontFamily.roboto,
+    // ...theme.fontFamily.roboto,
     padding: theme.spacing(1.5, 2),
   },
   inputNoteInput: {
@@ -52,7 +52,7 @@ const useStyles = makeStyles()((theme) => ({
     justifyContent: 'space-between',
   },
   buttonClick: {
-    ...theme.fontFamily.roboto,
+    // ...theme.fontFamily.roboto,
     border: 0,
     background: 'none',
     color: theme.palette.text.primary,
