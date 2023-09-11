@@ -1,24 +1,14 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { makeStyles } from 'tss-react/mui';
 import { useTheme } from '@mui/material/styles';
-// import {
-//   AppBar,
-//   Toolbar,
-//   IconButton,
-//   Typography,
-//   useScrollTrigger,
-//   useMediaQuery,
-// } from '@material-ui/core';
+
 import {
   AccountCircleOutlined as AccountsIcon,
-  DashboardOutlined as TileViewIcon,
-  Brightness4Outlined as ToggleDarkModeIcon,
   Brightness5Outlined as ToggleLightModeIcon,
   SearchOutlined as SearchIcon,
   Menu as MenuIcon,
-  ViewAgendaOutlined as ListIcon,
 } from '@mui/icons-material';
 
 import {
@@ -29,10 +19,10 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-// import ProfilePopover from './ProfilePopover';
+
 import SearchInput from './SearchInput';
 import { useUiStore } from '../../context/globalStore';
-// import { useUserStore, useUiStore } from '../../context/globalStore';
+
 const imgUrl = new URL('../../assets/logo.png', import.meta.url).href;
 
 const useStyles = makeStyles()((theme) => ({
@@ -113,26 +103,16 @@ function TopBar() {
   const menuId = 'primary-search-account-menu';
   const { classes } = useStyles();
   const theme = useTheme();
-  //   const [isProfilePopoverOpen, setProfilePopoverOpen] = useState(false);
+
   const [isSearchShowingInMobile, setSearchShowing] = useState(false);
-  //   const profileMenuRef = useRef();
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
   });
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
-  // const [{ isDarkMode, isListView }, { toggleDarkMode, toggleView }] =
-  //   useUserStore();
-  //   const [, updateUserSettings] = useMutation(updateUser);
+
   const [, { toggleNavBar }] = useUiStore();
-  //   const onDarkModeToggle = useCallback(() => {
-  //     updateUserSettings({ darkMode: !isDarkMode });
-  //     toggleDarkMode();
-  //   }, [updateUserSettings, toggleDarkMode, isDarkMode]);
-  //   const onViewToggle = useCallback(() => {
-  //     updateUserSettings({ listMode: !isListView });
-  //     toggleView();
-  //   }, [updateUserSettings, toggleView, isListView]);
 
   return (
     <div className={classes.grow}>
@@ -177,15 +157,7 @@ function TopBar() {
               </IconButton>
             </div>
           ) : null}
-          {/* <div>
-            <IconButton
-              aria-label="refresh"
-              aria-controls={menuId}
-              onClick={refreshItems}
-            >
-              <RefreshIcon />
-            </IconButton>
-          </div> */}
+
           <div>
             <IconButton
               aria-label="toggle dark theme"
@@ -197,47 +169,13 @@ function TopBar() {
               />
             </IconButton>
           </div>
-          {/* {isMobile ? null : (
-            <div>
-              <IconButton
-                aria-label={
-                  isListView ? 'toggle tile view' : 'toggle list view'
-                }
-                aria-controls={menuId}
-                // onClick={onViewToggle}
-              >
-                {isListView ? (
-                  <TileViewIcon
-                  //   htmlColor={theme.custom.palette.iconColor}
-                  />
-                ) : (
-                  <ListIcon
-                  //   htmlColor={theme.custom.palette.iconColor}
-                  />
-                )}
-              </IconButton>
-            </div>
-          )} */}
+
           <div>
-            <IconButton
-            //   edge="end"
-            //   ref={profileMenuRef}
-            //   aria-label="account of current user"
-            //   aria-controls={menuId}
-            //   aria-haspopup="true"
-            //   onClick={() => setProfilePopoverOpen(true)}
-            >
-              <AccountsIcon
-              //   htmlColor={theme.custom.palette.iconColor}
-              />
+            <IconButton>
+              <AccountsIcon />
             </IconButton>
           </div>
         </Toolbar>
-        {/* <ProfilePopover
-          anchorEl={profileMenuRef.current}
-          isOpen={isProfilePopoverOpen}
-          onClose={() => setProfilePopoverOpen(false)}
-        /> */}
       </AppBar>
     </div>
   );

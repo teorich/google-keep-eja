@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState } from 'react';
-// import { makeStyles } from '@material-ui/styles';
+import { useState } from 'react';
+
 import {
   Search as SearchIcon,
   CloseOutlined as CloseOutlinedIcon,
@@ -15,7 +15,6 @@ import {
   IconButton,
   Snackbar,
 } from '@mui/material';
-import { grey } from '@mui/material/colors';
 
 const useStyles = makeStyles()((theme) => ({
   search: {

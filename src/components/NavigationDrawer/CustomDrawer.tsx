@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
+import { styled, Theme, CSSObject } from '@mui/material/styles';
 import { makeStyles } from 'tss-react/mui';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
